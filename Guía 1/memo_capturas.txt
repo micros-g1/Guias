@@ -1,0 +1,65 @@
+scope_0:
+Señales previo a cargar el programa
+Amarilla: E
+Verde: Address Strobe
+Violeta: LIR
+
+scope_1:
+Programa del punto 1 corriendo
+Idem scope_0
+
+
+scope_2:
+programa del [punto 1
+Amarillo: E
+Verde: A14
+Viole:LIR
+
+scope_3:
+programa del [punto 1
+Amarillo: E
+Verde: A15
+Viole:LIR
+
+scope_4:
+programa del [punto 1
+Amarillo: E
+Verde: A13
+Viole:LIR
+
+scope_5:
+programa del [punto 1
+Amarillo: E
+Verde: A14
+Rojo: A13
+Viole:LIR
+
+
+scope_6:
+Amarillo:E
+Rojo: chip enable de la FLASH
+Verde: AS
+Vio: LIR
+Aca lo qye pasa es que el unico dato qye saco de la flash es el que esta eb la $C000(Dato de ldaa) por eso solo se activa
+en el ciclo de ldaa
+
+scope_7:
+Amarillo:E
+Rojo: chip enable de la RAM
+Verde: AS
+Vio: LIR
+
+scope_8:
+Amarillo E
+Rojo: CE de la RAM
+Verde: CE de la FLASH
+Viole: LIR
+
+scope_9
+Cuando el chip enable se activa (active low) la memoria lee el dato de la direccion $C001 (10) y el ultimo bit
+del bus cambia de 1 a 0.
+Amari: E
+Verde: CE
+Rojo a0/d0 (lsb del bus).
+t_acceso = 67.4 nseg
+
