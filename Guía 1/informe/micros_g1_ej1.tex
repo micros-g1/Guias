@@ -3,6 +3,32 @@
 
 \section{}
 
+Se estudi\'o el comportamiento del microprocesador HC11 al correr el siguiente programa:
 
+	\begin{lstlisting}
+	org	$2000
+	ldaa	$C000
+	jmp	$2000
+	\end{lstlisting}
+
+En primer lugar, se realiz\'o un an\'alisis te\'orico de lo que esperaba verse. El mismo se encuentra plasmado en la figura \ref{fig:teorico}. Luego, se procedi\'o a observar estas se\~nales en el osciloscopio.
+
+\begin{figure}[ht]
+	\centering
+	\fbox{
+	\includegraphics[width=0.8\textwidth]{images/micros-g1-ej1-1.png}
+	}
+	\caption{Medici\'on de E (amarillo), $\overline{\text{CE}}$ (rosa), AS (verde), y $\overline{\text{LIR}}$ (violeta)}
+\end{figure}
+
+A grandes rasgos, el comportamiento observado coincide con el esperado. Se observa que las transiciones en el LIR son mucho m\'as lentas que en las dem\'as se\~nales, y es a su vez la \'unica que no presenta sobrepicos. Esta se\~nal nos permite saber qu\'e instrucci\'on se est\'a ejecutando: cuando el tiempo entre dos pulsos activos (bajos) es m\'as largo, se est\a corriendo "ldaa C000", y cuando es m\'as corto, "jmp 2000". Por otro lado, el chip select nos permite identificar el momento en que se accede a la posici\'on C000, que es la \'unica de las que utiliza el programa que se encuentra en la memoria flash.
+
+
+\begin{sidewaysfigure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{images/micros-g1-waves.png}
+	\caption{Diagrama de tiempos del programa analizado}
+	\label{fig:teorico}
+\end{sidewaysfigure}
 
 \end{document}
