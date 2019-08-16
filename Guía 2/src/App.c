@@ -38,11 +38,7 @@ int button_pressed;
 
 void App_Init (void)
 {
-    //gpioMode(PIN_LED_GREEN, OUTPUT);
     gpioMode(PIN_LED_EXT, OUTPUT);
-
-    //gpioMode(PIN_SW3, INPUT);
-    //gpioMode(PIN_SW2, INPUT);
     gpioMode(PIN_SW_EXT, INPUT);
 
     past_state = LOW;			//el led se prende en LOW
@@ -54,7 +50,6 @@ void App_Init (void)
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	//curr_state = !gpioRead(PIN_SW3);
 	curr_state = !gpioRead(PIN_SW_EXT);
 	if( curr_state != past_state){
 		if(button_pressed)
