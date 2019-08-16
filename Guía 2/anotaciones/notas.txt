@@ -13,4 +13,12 @@ Ejercicio 4
     Medimos la resistencia entre pin de entrada de SW2 y el pin de 3.3V, medimos 90 ohm de R. SEÑOR PULLUP: Quiere
     decir que esa R de pullup hae que no limite la corriente. De todas formas, se la banca la placa.
 
+Ejercicio 5
+    Es el mismo codigo que Pull2Push y cambiamos los pines en el codigo. Armamos pulsador y led como indica el
+    esquematico Draft3. Anduvo de toque. Abs.
+
+    En la 2da parte se pide cambiar los pines de entrada del pulsador y salida del LED. Para encontrar cual es el PIN PTA0
+    usamos el archivo FRDM-K64F - Pinout.jpg, pero en el programa lo señalamos como el PTC12 tal como inidca el archivo 
+    FRDM-K64F - User Manual r1.pdf. Anduvo Joya Nunca Taxi.
+
     
