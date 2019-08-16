@@ -1,0 +1,24 @@
+Ejercicio 4
+    Configuramos el modo input del SW3 en solo INPUT (no le dimos pullup por software) y el codigo
+    funcionó correctamente. Esto es porque la placa tiene un pullup hecho en el pin de entrada
+    del pulsador, entonces no hace falta darle pullup por software.
+
+    Cuando configuramos el pulsador SW2 en modo INPUT (sin pullup por software), inesperadamente
+    el programa funcionaba correctamente. Esto a priori no deberia suceder ya que la input del
+    pulsador no tiene pullup. Mirando el esquematico de la placa vimos que el pin de entrada del pulsador
+    tambien esta conectado a una salida INT1 del acelerometro. Concluimos que este pin INT1 del acelerometro
+    es el que esta "poniendo" el HIGH del pullup, y asi es que puede funcionar establemente. Es importante que el
+    pin INT1 es del tipo push-pull y hay un no tan buen diseño porque, cuando INT1 esta en HIGH y nosotros
+    pulsamos el SW2, estamos generando un corto desde INT1 a tierra.
+    Medimos la resistencia entre pin de entrada de SW2 y el pin de 3.3V, medimos 90 ohm de R. SEÑOR PULLUP: Quiere
+    decir que esa R de pullup hae que no limite la corriente. De todas formas, se la banca la placa.
+
+Ejercicio 5
+    Es el mismo codigo que Pull2Push y cambiamos los pines en el codigo. Armamos pulsador y led como indica el
+    esquematico Draft3. Anduvo de toque. Abs.
+
+    En la 2da parte se pide cambiar los pines de entrada del pulsador y salida del LED. Para encontrar cual es el PIN PTA0
+    usamos el archivo FRDM-K64F - Pinout.jpg, pero en el programa lo señalamos como el PTC12 tal como inidca el archivo 
+    FRDM-K64F - User Manual r1.pdf. Anduvo Joya Nunca Taxi.
+
+    
