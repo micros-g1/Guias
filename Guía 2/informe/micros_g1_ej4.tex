@@ -1,0 +1,16 @@
+\documentclass[micros_g1_main.tex]{subfiles}
+\begin{document}
+
+\section{Ejercicio 4}
+\subsection{ítem a}
+El código utilizado se muestra a continuación. Se muestran solamente las definiciones de los pines y el código implementado para la consigna.
+\lstinputlisting[language=C]{codigos/ej4_a.c}
+El código utilizado configuró el PIN del SW3 en modo INPUT (con el pullup por software deshabilitado) y el PIN del LED en OUTPUT. Como era de esperarse el código funcionó correctamente.
+
+\subsection{ítem b}
+A continuación se pidió modificar el código del ítem anterior para controlar el LED con el pulsador SW2 incorporado en la placa. Según el diseño de la placa, en principio, el código no debería cumplir correctamente con la función solicitada. Esto se debe a que en una primera inspección se determinó que el pulsador no cuenta con una resistencia de pullup, con lo cual al configurar el PIN de entrada del SW2 como input sin el pullup por software habilitado, el PIN debería quedar 'flotando' al no ser pulsado, y causar un estado indeterminado del pulsador.
+
+Sin embargo, al correr el código, el programa siguió funcionando correctamente. Una inspección mas minuciosa determinó que el PIN de entrada del SW2 estaba también conectado al terminal INT1 del acelerómetro incorporado en la placa. El terminal INT1 del acelerómetro es del tipo push-pull, y hace las veces de pullup al terminal de entrada del pulsador SW2, permitiendo que el programa funcione correctamente.
+
+Se midió la 'resistencia' de pullup que impone el terminal INT1 del acelerómetro, resultado en un valor de 90$\Omega$, lo cuál es un valor inesperadamente bajo, ya que al pulsar el pulsador SW2, circula una corriente elevada por la placa.
+\end{document}

@@ -20,6 +20,7 @@
 
 \usepackage{rotating}
 \usepackage{verbatim}
+\usepackage{xcolor}
 \usepackage{listings}
 \usepackage{steinmetz} % comando \phase{}
 \usepackage{units} % permite usar nicefrac
@@ -27,6 +28,31 @@
 \usepackage{float} % posicion H para floats
 \usepackage[colorinlistoftodos]{todonotes}
 
+% Definicion de colores para xcolor
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Definicion de estilos para listings
+\lstdefinestyle{lichaStyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                                     
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=lichaStyle}
 
 \usepackage[a4paper, total={6in, 8in}]{geometry} 
 % margenes correctos en subarchivos
