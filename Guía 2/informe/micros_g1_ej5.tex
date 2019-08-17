@@ -1,5 +1,18 @@
 \documentclass[micros_g1_main.tex]{subfiles}
 \begin{document}
 \section{Ejercicio 5}
+\subsection{ítem a}
+En el siguiente ejercicio se nos solicitó implementar el mismo programa que en el ejercicio 4, a diferencia que los circuitos correspondientes al pulsador y al LED se debieron implementar de forma externa, es decir, fuera de la placa provista. Para esto se implementaron los circuitos ilustrados en la Figura \ref{fig:circuitos_5}.
 
+\begin{figure}[ht]
+\centering
+\input{circuito_5}
+\label{fig:circuitos_5}
+\caption{Circuito de pulsador y LED externos}
+\end{figure}
+
+La entrada del pulsador se configuró en el PIN PTC9, mientras que la salida del LED se configuró en el PIN PTB23. Se reutilizó el código implementado en el ejercicio 4 con la configuración de pines mencionada. El programa funcionó correctamente, como era de esperarse.
+
+\subsection{ítem b}
+En la segunda parte del ejercicio se nos solicitó cambiar los pines del LED y el pulsador implementados en el ítem a. El pulsador se configuró en el pin PTC0 y el LED en el pin PTA0. El pin PTA0 no figura en el esquemático de la placa, por lo tanto, hubo que identificarlo en otro documento, para luego encontrar la etiqueta del pin en el esquemático. El problema no presento mayor dificultad y el programa funcionó correctamente.
 \end{document}

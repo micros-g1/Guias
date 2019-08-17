@@ -1,0 +1,9 @@
+\documentclass[micros_g1_main.tex]{subfiles}
+\begin{document}
+\section{Ejercicio 6}
+Para el último problema, se implementaron tanto el LED que hace las veces de baliza, como el pulsador, de forma externa al igual que en el ejercicio 5. El código implementado fue el siguiente:
+\lstinputlisting[language=C]{codigos/ej6.c}
+En esencia, lo que se intenta hacer es implementar un loop que acumule delays de tiempo bloqueantes (es decir, durante el tiempo de delay no puedo leer input de botón, técnicamente), pero de muy corta duración, de forma que prácticamente no afecte el bloqueo de input del pulsador, o sea imperceptible. Una vez que acumulo una cantidad suficiente de delays, procedo a togglear la baliza. 
+La complejidad del programa se centra en determinar el tiempo y la cantidad de delays que se ejecutan para no perder ningún input.
+
+\end{document}
