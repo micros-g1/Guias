@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-USER_OBJS := C:/ITBA/Micros_workspace/Projects/Guias/Guia3/myBlink/source/gpio.o
+USER_OBJS := C:/ITBA/9\ Cuatrimestre/Laboratorio\ de\ Microprocesadores/Guias/Guia\ 3/src/Projects/myBlink/source/gpio.o
 
 LIBS :=
 
