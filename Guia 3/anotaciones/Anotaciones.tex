@@ -1,0 +1,58 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Lisandro Alvarez}
+
+\begin{document}
+\section{Ejercicio 1}
+\subsection{item a}
+Buscamos en el reference manual seccion 11.5: Port Control and Interrupt. La direccion es \texttt{4004\_9030}, en Hexa.
+\subsection{item b}
+En la seccion 11.5.1 del RM esta la estructura del PCR. Es el bit 24.
+\subsection{item c}
+\subsubsection{PDDR}
+Seccion 55.2.6 indica los valores que toma el  \texttt{GPIOx\_PDDR} (Port Data Direction Register) luego del reset. setea a 0: General Purpose Input.
+
+\subsubsection{PCR->SRE}
+Sección 11.5.1 indica como quedan los bits del PCR luego del reset. SRE (Slew Rate Enable) varia según el puerto. Nos fijamos la especificación del puerto B en 
+0: Fast Slew Rate
+1: Slow Slew Rate
+
+Seccion 2.2.2 indica SRE segun puerto luego del reset. El estado es Disable, es decir, el estado de SRE es 1: Fast Slew Rate (no ralentiza la salida).
+
+\subsubsection{PCR->Pull}
+el bit PS indica el tipo de pull (pullup o pulldown) y el bit PE indica si esta habilitada o no la opcion de pull interno para ese pin. Luego del reset se pone PE en Disabled y PS pulldown
+
+PE
+\begin{itemize}
+\item 0: disabled
+\item 1: ebabled
+\end{itemize}
+
+PS
+\begin{itemize}
+\item 0: pulldown
+\item 1: pullup
+\end{itemize}
+
+
+PS:
+0:
+
+\subsubsection{PDOR}
+
+Seccion 55.2.1 indica que valores toma el \texttt{GPIOx\_PDOR} (Port Data Output Register) luego de un reset. Setea todos los pines a 0.
+
+\subsubsection{PDIR}
+Seccion 55.2.5 indica que valores toma el \texttt{GPIOx\_PDIR} (Port Data Input Register) luego del reset. Setea todos los pines a 0.
+
+\section{Ejercicio 2}
+Se encuentra en el archivo \texttt{MK64F12.h}. 
+Tiene campos reservados porque el RM indica que hay un espacio o salto de direcciones de 'memoria' por ejemplo entre los registros GPCHR y ISFR de un puerto (en este caso nos fijamos en la datasheet del puerto C, pero se repite para todos los puertos).
+
+\end{document}
