@@ -72,8 +72,8 @@ static void initial_conf_pcr (PORT_Type* port_conf, int pin_num){
 *	psor todo a cero
 *	pcor todo a cero
 *	ptor todo a cero
-*	pdir todo a cero
 *	pddr todo a cero
+*	pdir no se toca porque es de input y no se puede modificar
 *
 *	INPUT:
 *		- gpio_conf : Estructura que sera modificada con los valores de reset por referencia
@@ -88,7 +88,6 @@ static void initial_conf_gpio(GPIO_Type* gpio_conf, int pin_num){
 	gpio_conf->PSOR = empty_word;
 	gpio_conf->PCOR = empty_word;
 	gpio_conf->PTOR = empty_word;
-	gpio_conf->PDIR = empty_word;
 	gpio_conf->PDDR = empty_word;
 
 }
