@@ -7,8 +7,9 @@
 #include "gpio.h"
 #include "MK64F12.h"
 
-static void conf_initial_pcr (PORT_Type* port_conf, int pin_num);
-static void conf_initial_gpio(GPIO_Type* gpio_conf, int pin_num);
+static void initial_conf_pcr (PORT_Type* port_conf, int pin_num);
+
+static void initial_conf_gpio(GPIO_Type* gpio_conf, int pin_num);
 static void set_input_mode(GPIO_Type* gpio_conf);
 static void set_output_mode(GPIO_Type* gpio_conf);
 static void set_input_pulldown_mode(GPIO_Type* gpio_conf);
@@ -22,8 +23,8 @@ void gpioMode (pin_t pin, uint8_t mode){
 	PORT_Type port_conf;
 	GPIO_Type gpio_conf;
 
-	conf_initial_pcr(&port_conf, pin_num);
-	conf_initial_gpio(&gpio_conf, pin_num);
+	initial_conf_pcr(&port_conf, pin_num);
+	initial_conf_gpio(&gpio_conf, pin_num);
 
 	switch(mode){
 	case INPUT:
@@ -42,8 +43,6 @@ void gpioMode (pin_t pin, uint8_t mode){
 		//Excepcion!!!
 		break;
 	};
-
-
 	//copy_2_memory_map();
 	//copy_2_memory_map();
 
@@ -58,18 +57,39 @@ void gpioMode (pin_t pin, uint8_t mode){
 // ISF w1c, asi que le escribimos un 1.
 // LK no se toca
 
-static void conf_initial_pcr (PORT_Type* port_conf, int pin_num){
+static void initial_conf_pcr (PORT_Type* port_conf, int pin_num){
 
 }
 
-//PARA EL PIN N EN ESPECIFICO!!
-// pdor todo a cero
-// psor todo a cero
-// pcor todo a cero
-// ptor todo a cero
-// pdir todo a cero
-// pddr todo a cero
-static void conf_initial_gpio(GPIO_Type* gpio_conf, int pin_num){
+
+/***********************************
+*********initial_conf_gpio**********
+************************************
+* initial_conf_gpio deja configurado a una estructura
+* GPIO_Type como quedaria configurada luego de un reset
+* de maquina para el pin N en especfico. Esto quiere decir:
+*	pdor todo a cero
+*	psor todo a cero
+*	pcor todo a cero
+*	ptor todo a cero
+*	pdir todo a cero
+*	pddr todo a cero
+*
+*	INPUT:
+*		- gpio_conf : Estructura que sera modificada con los valores de reset por referencia
+*		- pin_num : numero de pin cuyos valores de gpio_conf seran actualizados a reset.
+*	OUTPUT:
+*		void. Todo se cambia por referencia.
+*/
+static void initial_conf_gpio(GPIO_Type* gpio_conf, int pin_num){
+
+	uint32_t empty_word = 0;
+	gpio_conf->PDOR = empty_word;
+	gpio_conf->PSOR = empty_word;
+	gpio_conf->PCOR = empty_word;
+	gpio_conf->PTOR = empty_word;
+	gpio_conf->PDIR = empty_word;
+	gpio_conf->PDDR = empty_word;
 
 }
 
