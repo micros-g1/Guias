@@ -2,7 +2,7 @@
  * gpio.c
  *
  *  Created on: 24 ago. 2019
- *      Author: Tomas
+ *      Author: Tomas, Lisandro, Rocio, Gonzalo
  */
 #include "gpio.h"
 #include "MK64F12.h"
@@ -113,16 +113,16 @@ static void initial_conf_gpio(int port_num, int pin_num){
 }
 
 static void set_input_mode(int port_num, int pin_num){
-	//from the MK64 reference manual, section 55.2.6:
-	//0 : Pin is configured as general-purpose input, for the GPIO function.
+	/*from the MK64 reference manual, section 55.2.6:
+	0 : Pin is configured as general-purpose input, for the GPIO function.*/
 	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
 	GPIO_Type * gpio = addr_array[port_num];
 	gpio->PDDR &= ~(1 << pin_num);
 }
 
 static void set_output_mode(int port_num, int pin_num){
-	//from the MK64 reference manual, section 55.2.6:
-	//1 : Pin is configured as general-purpose output, for the GPIO function.
+	/*from the MK64 reference manual, section 55.2.6:
+	1 : Pin is configured as general-purpose output, for the GPIO function.*/
 	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
 	GPIO_Type * gpio = addr_array[port_num];
 	gpio->PDDR |= (1 << pin_num);
@@ -156,13 +156,31 @@ digital input.
 }
 
 void gpioWrite (pin_t pin, bool value){
+	int port_num = PIN2PORT(pin);
+	int pin_num = PIN2NUM(pin);
+
+	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
+	GPIO_Type * gpio = addr_array[port_num];
+	if(value)
+		gpio->PSOR |= (1 << pin_num) ;
+	else
+		gpio->PCOR |= (1 << pin_num);
 
 }
 
 void gpioToggle (pin_t pin){
-
+	int port_num = PIN2PORT(pin);
+	int pin_num = PIN2NUM(pin);
+	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
+	GPIO_Type * gpio = addr_array[port_num];
+	gpio->PTOR |= (1 << pin_num);
 }
 
 bool gpioRead (pin_t pin){
-	return true;
+	int port_num = PIN2PORT(pin);
+	int pin_num = PIN2NUM(pin);
+	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
+	GPIO_Type * gpio = addr_array[port_num];
+
+	return gpio->PDIR & (1 << pin_num);
 }
