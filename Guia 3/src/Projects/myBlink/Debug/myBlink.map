@@ -701,7 +701,7 @@ END GROUP
                 0x20000000        0x4 ./SDK/startup/hardware.o
  *(SORT_BY_ALIGNMENT(COMMON))
                 0x20000008                . = ALIGN (0x8)
- *fill*         0x20000004        0x4 
+ *fill*         0x20000004        0x4
                 0x20000008                _ebss = .
                 [!provide]                PROVIDE (end, .)
 
@@ -725,7 +725,7 @@ END GROUP
 .heap           0x20000008     0x1000
                 0x20000008                _pvHeapStart = .
                 0x20001008                . = (. + _HeapSize)
- *fill*         0x20000008     0x1000 
+ *fill*         0x20000008     0x1000
                 0x20001008                . = ALIGN (0x8)
                 0x20001008                _pvHeapLimit = .
                 0x00001000                _StackSize = 0x1000
@@ -733,7 +733,7 @@ END GROUP
 .heap2stackfill
                 0x20001008     0x1000
                 0x20002008                . = (. + _StackSize)
- *fill*         0x20001008     0x1000 
+ *fill*         0x20001008     0x1000
 
 .stack          0x2002f000        0x0
                 0x2002f000                _vStackBase = .

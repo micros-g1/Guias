@@ -6,6 +6,7 @@
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.23
  * MCUXpresso IDE v10.2.0 [Build 759] [2018-05-15]  on Aug 26, 2019 8:12:43 PM
+
  */
 
 INCLUDE "myBlink_Debug_library.ld"
@@ -55,7 +56,7 @@ SECTIONS
         PROVIDE(__FLASH_CONFIG_END__ = .) ;
         ASSERT(!(__FLASH_CONFIG_START__ == __FLASH_CONFIG_END__), "Linker Flash Config Support Enabled, but no .FlashConfig section provided within application");
         /* End of Kinetis Flash Configuration data */
-        
+
     } > PROGRAM_FLASH
 
     .text : ALIGN(8)
@@ -66,9 +67,9 @@ SECTIONS
     } > PROGRAM_FLASH
     /*
      * for exception handling/unwind - some Newlib functions (in common
-     * with C++ and STDC++) use this. 
+     * with C++ and STDC++) use this.
      */
-    .ARM.extab : ALIGN(8) 
+    .ARM.extab : ALIGN(8)
     {
         *(.ARM.extab* .gnu.linkonce.armextab.*)
     } > PROGRAM_FLASH
@@ -82,8 +83,8 @@ SECTIONS
     __exidx_end = .;
 
     _etext = .;
-        
- 
+
+
     /* USB_RAM */
     .m_usb_data (NOLOAD) :
     {
@@ -143,7 +144,7 @@ SECTIONS
        *(.bss.$SRAM_LOWER*)
        . = ALIGN (. != 0 ? 8 : 1) ; /* avoid empty segment */
        PROVIDE(__end_bss_RAM2 = .) ;
-    } > SRAM_LOWER 
+    } > SRAM_LOWER
 
     /* BSS section for FLEX_RAM */
     .bss_RAM3 : ALIGN(8)
@@ -153,7 +154,7 @@ SECTIONS
        *(.bss.$FLEX_RAM*)
        . = ALIGN (. != 0 ? 8 : 1) ; /* avoid empty segment */
        PROVIDE(__end_bss_RAM3 = .) ;
-    } > FLEX_RAM 
+    } > FLEX_RAM
 
     /* MAIN BSS SECTION */
     .bss : ALIGN(8)
@@ -172,7 +173,7 @@ SECTIONS
        *(.noinit.$RAM2*)
        *(.noinit.$SRAM_LOWER*)
        . = ALIGN(8) ;
-    } > SRAM_LOWER 
+    } > SRAM_LOWER
 
     /* NOINIT section for FLEX_RAM */
     .noinit_RAM3 (NOLOAD) : ALIGN(8)
@@ -180,13 +181,13 @@ SECTIONS
        *(.noinit.$RAM3*)
        *(.noinit.$FLEX_RAM*)
        . = ALIGN(8) ;
-    } > FLEX_RAM 
+    } > FLEX_RAM
 
     /* DEFAULT NOINIT SECTION */
     .noinit (NOLOAD): ALIGN(8)
     {
         _noinit = .;
-        *(.noinit*) 
+        *(.noinit*)
          . = ALIGN(8) ;
         _end_noinit = .;
     } > SRAM_UPPER

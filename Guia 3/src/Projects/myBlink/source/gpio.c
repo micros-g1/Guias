@@ -68,8 +68,8 @@ void gpioMode (pin_t pin, uint8_t mode){
 */
 static void initial_conf_pcr (int port_num, int pin_num){
 
-	PORT_Type * addr_arrays[] = PORT_BASE_PTRS;
-	PORT_Type * port = addr_arrays[port_num];
+	PORT_Type * addr_array[] = PORT_BASE_PTRS;
+	PORT_Type * port = addr_array[port_num];
 
 	port->PCR[pin_num] = 0;
 	port->PCR[pin_num] |= 1 << PORT_PCR_MUX_SHIFT;
