@@ -73,10 +73,9 @@ static void initial_conf_pcr (int port_num, int pin_num){
 	port->PCR[pin_num] = 0;
 	port->PCR[pin_num] |= 1 << PORT_PCR_MUX_SHIFT;
 	port->PCR[pin_num] |= 1 << PORT_PCR_ISF_SHIFT;
-
-
-
-
+	if(port_num == PA && pin_num <= 5){
+		port->PCR[pin_num] |= 1 << PORT_PCR_DSE_SHIFT;
+	}
 }
 
 /***********************************
