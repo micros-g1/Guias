@@ -6,6 +6,7 @@
  */
 #include "gpio.h"
 #include "MK64F12.h"
+#include <stdint.h>
 
 static void initial_conf_pcr(int port_num, int pin_num);
 static void initial_conf_gpio(int port_num, int pin_num);
@@ -68,7 +69,7 @@ void gpioMode (pin_t pin, uint8_t mode){
 static void initial_conf_pcr (int port_num, int pin_num){
 
 	PORT_Type * addr_arrays[] = PORT_BASE_PTRS;
-	PORT_Type * port = addr_array[port_num];
+	PORT_Type * port = addr_arrays[port_num];
 
 	port->PCR[pin_num] = 0;
 	port->PCR[pin_num] |= 1 << PORT_PCR_MUX_SHIFT;
@@ -76,6 +77,7 @@ static void initial_conf_pcr (int port_num, int pin_num){
 	if(port_num == PA && pin_num <= 5){
 		port->PCR[pin_num] |= 1 << PORT_PCR_DSE_SHIFT;
 	}
+
 }
 
 /***********************************
@@ -111,17 +113,46 @@ static void initial_conf_gpio(int port_num, int pin_num){
 }
 
 static void set_input_mode(int port_num, int pin_num){
+	//from the MK64 reference manual, section 55.2.6:
+	//0 : Pin is configured as general-purpose input, for the GPIO function.
+	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
+	GPIO_Type * gpio = addr_array[port_num];
+	gpio->PDDR &= ~(1 << pin_num);
 }
 
 static void set_output_mode(int port_num, int pin_num){
+	//from the MK64 reference manual, section 55.2.6:
+	//1 : Pin is configured as general-purpose output, for the GPIO function.
+	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
+	GPIO_Type * gpio = addr_array[port_num];
+	gpio->PDDR |= (1 << pin_num);
 }
 
 static void set_input_pulldown_mode(int port_num, int pin_num){
+	set_input_mode(port_num, pin_num);
+	/*from the MK64 reference manual, section 11.5.1, PORTx_PCRn field descriptions
+	 * 	PE:
+	 		1 : Internal pullup or pulldown resistor is enabled on the corresponding pin, if the pin is configured as a
+digital input.
+	 *	PS:
+			0 : Internal pulldown resistor is enabled on the corresponding pin, if the corresponding PE field is set.*/
+	PORT_Type * addr_arrays[] = PORT_BASE_PTRS;
+	PORT_Type * port = addr_arrays[port_num];
+	port->PCR[pin_num] |= (1 & ~(1 << 1));	//sets b0 to 1, enabling PE, and sets bit1 to 0 for pulldown.
 
 }
 
 static void set_input_pullup_mode(int port_num, int pin_num){
-
+	set_input_mode(port_num, pin_num);
+	/*from the MK64 reference manual, section 11.5.1, PORTx_PCRn field descriptions
+	 * 	PE:
+	 		1 : Internal pullup or pulldown resistor is enabled on the corresponding pin, if the pin is configured as a
+digital input.
+	 *	PS:
+			1 : Internal pullup resistor is enabled on the corresponding pin, if the corresponding PE field is set.*/
+	PORT_Type * addr_arrays[] = PORT_BASE_PTRS;
+	PORT_Type * port = addr_arrays[port_num];
+	port->PCR[pin_num] |= (uint32_t) 0x2;			//sets both bit0 and bit1, setting PS in pullup and enabling PE respectively.
 }
 
 void gpioWrite (pin_t pin, bool value){
