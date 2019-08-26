@@ -7,60 +7,77 @@
 #include "gpio.h"
 #include "MK64F12.h"
 
-static void initial_conf_pcr (PORT_Type* port_conf, int pin_num);
-
-static void initial_conf_gpio(GPIO_Type* gpio_conf, int pin_num);
-static void set_input_mode(GPIO_Type* gpio_conf);
-static void set_output_mode(GPIO_Type* gpio_conf);
-static void set_input_pulldown_mode(GPIO_Type* gpio_conf);
-static void set_input_pullup_mode(GPIO_Type* gpio_conf);
+static void initial_conf_pcr(int port_num, int pin_num);
+static void initial_conf_gpio(int port_num, int pin_num);
+static void set_input_mode(int port_num, int pin_num);
+static void set_output_mode(int port_num, int pin_num);
+static void set_input_pulldown_mode(int port_num, int pin_num);
+static void set_input_pullup_mode(int port_num, int pin_num);
 
 //queda todo como en reset
 void gpioMode (pin_t pin, uint8_t mode){
-	//int port_num = PIN2PORT(pin);
+	int port_num = PIN2PORT(pin);
 	int pin_num = PIN2NUM(pin);
-	//char * memory_map = ORIGIN + port_num * OFFSET;
-	PORT_Type port_conf;
-	GPIO_Type gpio_conf;
 
-	initial_conf_pcr(&port_conf, pin_num);
-	initial_conf_gpio(&gpio_conf, pin_num);
+	// Poner el registo PCR en un estado casi de reset
+	initial_conf_pcr(port_num, pin_num);
+	// poner los pines de los regstros de GPIO en estado de reset
+	initial_conf_gpio(port_num, pin_num);
 
 	switch(mode){
 	case INPUT:
-		set_input_mode(&gpio_conf);
+		set_input_mode(port_num, pin_num);
 		break;
 	case OUTPUT:
-		set_output_mode(&gpio_conf);
+		set_output_mode(port_num, pin_num);
 		break;
 	case INPUT_PULLDOWN:
-		set_input_pulldown_mode(&gpio_conf);
+		set_input_pulldown_mode(port_num, pin_num);
 		break;
 	case INPUT_PULLUP:
-		set_input_pullup_mode(&gpio_conf);
+		set_input_pullup_mode(port_num, pin_num);
 		break;
 	default:
 		//Excepcion!!!
 		break;
-	};
-	//copy_2_memory_map();
-	//copy_2_memory_map();
-
-}
-//internal pullup y pulldown desactivados.
-// MUX en 001 (ESTE NO ES SEGUN RESET, ES EN GPIO!!!)
-// DSE pta0 a pta5 enabled(1), el resto todo en disabled
-// PFE	Disabled (0) control
-// SRE Disabled (0)
-// PE Disabled (0)
-// PS No lo tocamos
-// ISF w1c, asi que le escribimos un 1.
-// LK no se toca
-
-static void initial_conf_pcr (PORT_Type* port_conf, int pin_num){
-
+	}
 }
 
+/***********************************
+*********initial_conf_pcr**********
+************************************
+* initial_conf_pcr deja configurada a una estructura
+* PORT_Type como quedaria configurada luego de un reset
+* de maquina para el pin N en especfico, a excepcion
+* del MUX, que es seteado a GPIO:
+*	MUX = 001
+*	DSE = 1 (PTA0 a PTA5), 0 (c.c)
+*	PFE = 0
+*	SRE = 0
+*	PE = 0
+*	PS = 0
+*	ISF = 1
+*	LK = 0
+*	INPUT:
+*		- port_conf : Estructura que sera modificada
+*		- port_num : numero de puerto cuyos valores de port_conf seran
+*		- pin_num : numero de pin cuyos valores de port_conf seran actualizados.
+*	OUTPUT:
+*		void. Todo se cambia por referencia.
+*/
+static void initial_conf_pcr (int port_num, int pin_num){
+
+	PORT_Type * addr_arrays[] = PORT_BASE_PTRS;
+	PORT_Type * port = addr_array[port_num];
+
+	port->PCR[pin_num] = 0;
+	port->PCR[pin_num] |= 1 << PORT_PCR_MUX_SHIFT;
+	port->PCR[pin_num] |= 1 << PORT_PCR_ISF_SHIFT;
+
+
+
+
+}
 
 /***********************************
 *********initial_conf_gpio**********
@@ -81,29 +98,33 @@ static void initial_conf_pcr (PORT_Type* port_conf, int pin_num){
 *	OUTPUT:
 *		void. Todo se cambia por referencia.
 */
-static void initial_conf_gpio(GPIO_Type* gpio_conf, int pin_num){
+static void initial_conf_gpio(int port_num, int pin_num){
 
-	uint32_t empty_word = 0;
-	gpio_conf->PDOR = empty_word;
-	gpio_conf->PSOR = empty_word;
-	gpio_conf->PCOR = empty_word;
-	gpio_conf->PTOR = empty_word;
-	gpio_conf->PDDR = empty_word;
+	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
+	GPIO_Type * gpio = addr_array[port_num];
+
+	gpio->PCOR &= ~(1 << pin_num);
+	gpio->PDDR &= ~(1 << pin_num);
+	gpio->PDOR &= ~(1 << pin_num);
+	gpio->PSOR &= ~(1 << pin_num);
+	gpio->PTOR &= ~(1 << pin_num);
+
+}
+
+static void set_input_mode(int port_num, int pin_num){
+}
+
+static void set_output_mode(int port_num, int pin_num){
+}
+
+static void set_input_pulldown_mode(int port_num, int pin_num){
 
 }
 
-static void set_input_mode(GPIO_Type* gpio_conf){
+static void set_input_pullup_mode(int port_num, int pin_num){
 
 }
-static void set_output_mode(GPIO_Type* gpio_conf){
 
-}
-static void set_input_pulldown_mode(GPIO_Type* gpio_conf){
-
-}
-static void set_input_pullup_mode(GPIO_Type* gpio_conf){
-
-}
 void gpioWrite (pin_t pin, bool value){
 
 }

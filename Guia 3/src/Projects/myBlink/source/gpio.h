@@ -28,8 +28,10 @@ enum { PA, PB, PC, PD, PE };
 #define PORTNUM2PIN(p,n)    (((p)<<5) + (n))
 #define PIN2PORT(p)         (((p)>>5) & 0x07)
 #define PIN2NUM(p)          ((p) & 0x1F)
-#define ORIGIN				(char*)(0x40049000)
-#define OFFSET				sizeof(PORT_Type)
+#define ORIGIN_PORT			0x40049000
+#define ORIGIN_GPIO			0x400FF000
+#define OFFSET_PORT			0x1000
+#define OFFSET_GPIO			0x40
 // Modes
 #ifndef INPUT
 #define INPUT               0
