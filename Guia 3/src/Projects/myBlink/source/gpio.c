@@ -97,7 +97,7 @@ static void initial_conf_pcr (int port_num, int pin_num){
 *		- gpio_conf : Estructura que sera modificada con los valores de reset por referencia
 *		- pin_num : numero de pin cuyos valores de gpio_conf seran actualizados a reset.
 *	OUTPUT:
-*		void. Todo se cambia por referencia.
+*		void.
 */
 static void initial_conf_gpio(int port_num, int pin_num){
 
@@ -111,8 +111,27 @@ static void initial_conf_gpio(int port_num, int pin_num){
 	gpio->PTOR &= ~(1 << pin_num);
 
 }
-
+/***********************************
+*********set_input_mode**********
+************************************
+* set_input_mode configures the specified pin in input mode
+* and sets the pull enable (PE) to 0 (disabled).
+* The pull select (PS) value is untouched, so the user should check in the reference manual
+* what value it will be on once the PE is enabled again.
+*	INPUT:
+*		- port_num : port that will be set to input mode (A,B,C,...), as given by define PIN2PORT
+*		- pin_num : pin number that will be set to input mode.
+*	OUTPUT:
+*		void.
+*/
 static void set_input_mode(int port_num, int pin_num){
+	/*from the MK64 reference manual, section 11.5.1, PORTx_PCRn field descriptions
+	 * 	PE:
+			0 Internal pullup or pulldown resistor is not enabled on the corresponding pin.*/
+	PORT_Type * addr_arrays[] = PORT_BASE_PTRS;
+	PORT_Type * port = addr_arrays[port_num];
+	port->PCR[pin_num] &=  ~((uint32_t)2);		//clears bit1 (PE)
+
 	/*from the MK64 reference manual, section 55.2.6:
 	0 : Pin is configured as general-purpose input, for the GPIO function.*/
 	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
@@ -120,7 +139,18 @@ static void set_input_mode(int port_num, int pin_num){
 	gpio->PDDR &= ~(1 << pin_num);
 }
 
+/***********************************
+*********set_output_mode**********
+************************************
+* set_output_mode configures the specified pin in output mode
+*	INPUT:
+*		- port_num : port that will be set to output mode (A,B,C,...), as given by define PIN2PORT
+*		- pin_num : pin number that will be set to input mode as given by define PIN2NUM
+*	OUTPUT:
+*		void.
+*/
 static void set_output_mode(int port_num, int pin_num){
+
 	/*from the MK64 reference manual, section 55.2.6:
 	1 : Pin is configured as general-purpose output, for the GPIO function.*/
 	GPIO_Type * addr_array[] = GPIO_BASE_PTRS;
@@ -128,6 +158,17 @@ static void set_output_mode(int port_num, int pin_num){
 	gpio->PDDR |= (1 << pin_num);
 }
 
+/***********************************
+*********set_input_pulldown_mode****
+************************************
+* set_input_pulldown_mode configures the specified pin in input mode,
+* with its pull down resistor enabled.
+*	INPUT:
+*		- port_num : port that will be set to input pulldown mode (A,B,C,...), as given by define PIN2PORT
+*		- pin_num : pin number that will be set to input pulldown mode.
+*	OUTPUT:
+*		void.
+*/
 static void set_input_pulldown_mode(int port_num, int pin_num){
 	set_input_mode(port_num, pin_num);
 	/*from the MK64 reference manual, section 11.5.1, PORTx_PCRn field descriptions
@@ -142,6 +183,17 @@ digital input.
 
 }
 
+/***********************************
+*********set_input_pullup_mode**********
+************************************
+* set_input_pullup_mode configures the specified pin in input mode,
+* with its pull up resistor enabled.
+*	INPUT:
+*		- port_num : port that will be set to input pullup mode (A,B,C,...), as given by define PIN2PORT
+*		- pin_num : pin number that will be set to input pullup mode.
+*	OUTPUT:
+*		void.
+*/
 static void set_input_pullup_mode(int port_num, int pin_num){
 	set_input_mode(port_num, pin_num);
 	/*from the MK64 reference manual, section 11.5.1, PORTx_PCRn field descriptions
