@@ -15,6 +15,19 @@ static void set_output_mode(int port_num, int pin_num);
 static void set_input_pulldown_mode(int port_num, int pin_num);
 static void set_input_pullup_mode(int port_num, int pin_num);
 
+static void enable_interrupt_pins(int port_num, int pin_num);
+static void disable_interrupt_pins(int port_num, int pin_num);
+
+
+pinIrqFun_t interrupt_vector[5];
+int interrupt_pins[5][32];
+
+void interrupts_init(){
+	int i, j;
+	for(i = 0; i < 5; i++)
+		for(j = 0; j< 32; j++)
+			interrupt_pins[i][j] = -1;
+}
 //queda todo como en reset
 void gpioMode (pin_t pin, uint8_t mode){
 	int port_num = PIN2PORT(pin);
@@ -235,4 +248,65 @@ bool gpioRead (pin_t pin){
 	GPIO_Type * gpio = addr_array[port_num];
 
 	return gpio->PDIR & (1 << pin_num);
+}
+
+bool gpioIRQ(pin_t pin, uint_t irqMode, pinIrqFun_t irqFun){
+	int port_num = PIN2PORT(pin);
+	int pin_num = PIN2NUM(pin);
+	interrupt_vector[port_num] = irqFun;
+
+	if(irqMode == GPIO_IRQ_MODE_DISABLE)
+		disable_interrupt_pins(port_num, pin_num);
+	else
+		enable_interrupt_pins(port_num, pin_num);
+
+	PORT_Type * addr_arrays[] = PORT_BASE_PTRS;
+	PORT_Type * port = addr_arrays[port_num];
+
+	switch(irqMode){
+		case GPIO_IRQ_MODE_DISABLE:
+			port->PCR[pin_num] &= ~(0b1111 << PORT_PCR_IRQC_SHIFT);
+		case GPIO_IRQ_MODE_RISING_EDGE:
+			port->PCR[pin_num] &= ~(0b1111 << PORT_PCR_IRQC_SHIFT);
+			port->PCR[pin_num] |= 0b1001 << PORT_PCR_ICRQ_SHIFR;
+			break;
+		case GPIO_IRQ_MODE_FALLING_EDGE:
+			port->PCR[pin_num] &= ~(0b1111 << PORT_PCR_IRQC_SHIFT);
+			port->PCR[pin_num] |= 0b1010 << PORT_PCR_ICRQ_SHIFR;
+			break;
+		case GPIO_IRQ_MODE_BOTH_EDGES:
+			port->PCR[pin_num] &= ~(0b1111 << PORT_PCR_IRQC_SHIFT);
+			port->PCR[pin_num] |= 0b1011 << PORT_PCR_ICRQ_SHIFR;
+			break;
+		case GPIO_IRQ_CANT_MODES:
+			break;
+		default:
+			break;
+	}
+}
+
+void PORTA_IRQHandler(void){
+	PORT_ClearInterrupt(PA, )
+}
+
+void PORT_ClearInterruptFlag (PORT_Type port, int pin_num){
+	port->PCR[pin_num] |= PORT_PCR_ISF_MASK;
+}
+static void enable_interrupt_pins(int port_num, int pin_num){
+	for (int i = 0; i < 32; i++)
+		if(interrupt_pins[port_num][i] == pin_num)
+			break;
+		else if(interrupt_pins[port_num][i] == -1){
+			interrupt_pins[port_num][i] = pin_num;
+			break;
+		}
+}
+static void disable_interrupt_pins(int port_num, int pin_num){
+	for (int i = 0; i < 32; i++)
+		if(interrupt_pins[port_num][i] == pin_num){
+			for(int j = i + 1; j < 32; j++)
+				interrupt_pins[port_num][j-1] = interrupt_pins[port_num][j];
+			interrupt_pins[port_num][31] = -1;
+			break;
+		}
 }
