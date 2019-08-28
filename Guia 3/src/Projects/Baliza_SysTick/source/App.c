@@ -10,19 +10,26 @@
 
 #include "board.h"
 #include "gpio.h"
+#include "SysTick.h"
+
 
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
+#define BLINK_FREQ_HZ 2U
+#if SYSTICK_ISR_FREQUENCY_HZ % (2*BLINK_FREQ_HZ) != 0
+#warning BLINK cannot implement this exact frequency.
+		Using floor(SYSTICK_ISR_FREQUENCY_HZ/BLINK_FREQ_HZ/2) instead.
+#endif
+
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-static void delayLoop(uint32_t veces);
-
+void systick_callback(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -34,13 +41,13 @@ static void delayLoop(uint32_t veces);
 void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
+    SysTick_Init(systick_callback);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-    delayLoop(4000000UL);
-    gpioToggle(PIN_LED_BLUE);
+    while (1) { ; }
 }
 
 
@@ -50,9 +57,19 @@ void App_Run (void)
  *******************************************************************************
  ******************************************************************************/
 
-static void delayLoop(uint32_t veces)
+void systick_callback(void)
 {
-    while (veces--);
+	static uint32_t counter = 0;
+
+	// use counter for dividing systick frequency
+	if (counter == SYSTICK_ISR_FREQUENCY_HZ/BLINK_FREQ_HZ/2) {
+		// toggle pin twice per period
+		gpioToggle(PIN_LED_BLUE);
+		counter = 0;
+	}
+	else {
+		counter++;
+	}
 }
 
 

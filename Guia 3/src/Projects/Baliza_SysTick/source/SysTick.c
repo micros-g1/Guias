@@ -7,9 +7,11 @@
 #include "MK64F12.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include "core_cm4.h"
 
-#define F_CLK	120000000U // clock frequency, Hz
+
+#define FCLK	120000000U // clock frequency, Hz
 
 #if FCLK % SYSTICK_ISR_FREQUENCY_HZ != 0
 #warning SYSTICK cannot implement this exact frequency. Using floor(FCLK/SYSTICK_ISR_FREQUENCY_HZ) instead.
