@@ -1,47 +1,60 @@
 /***************************************************************************//**
-  @file     SysTick.h
-  @brief    SysTick driver
-  @author   Nicol�s Magliola
+  @file     App.c
+  @brief    Application functions
+  @author   Nicolás Magliola
  ******************************************************************************/
-
-#ifndef _SYSTICK_H_
-#define _SYSTICK_H_
 
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
 
-#include <stdbool.h>
+#include "board.h"
+#include "gpio.h"
 
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-#define SYSTICK_ISR_FREQUENCY_HZ 1000U
+
+/*******************************************************************************
+ * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
+
+static void delayLoop(uint32_t veces);
 
 
 /*******************************************************************************
- * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
+ *******************************************************************************
+                        GLOBAL FUNCTION DEFINITIONS
+ *******************************************************************************
  ******************************************************************************/
+
+/* Función que se llama 1 vez, al comienzo del programa */
+void App_Init (void)
+{
+    gpioMode(PIN_LED_BLUE, OUTPUT);
+}
+
+/* Función que se llama constantemente en un ciclo infinito */
+void App_Run (void)
+{
+    delayLoop(4000000UL);
+    gpioToggle(PIN_LED_BLUE);
+}
+
 
 /*******************************************************************************
- * VARIABLE PROTOTYPES WITH GLOBAL SCOPE
+ *******************************************************************************
+                        LOCAL FUNCTION DEFINITIONS
+ *******************************************************************************
  ******************************************************************************/
 
-/*******************************************************************************
- * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
- ******************************************************************************/
-
-/**
- * @brief Initialize SysTic driver
- * @param funcallback Function to be call every SysTick
- * @return Initialization and registration succeed
- */
-bool SysTick_Init (void (*funcallback)(void));
+static void delayLoop(uint32_t veces)
+{
+    while (veces--);
+}
 
 
 /*******************************************************************************
  ******************************************************************************/
-
-#endif // _SYSTICK_H_
