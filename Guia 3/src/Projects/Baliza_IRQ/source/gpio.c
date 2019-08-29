@@ -17,9 +17,10 @@ static void set_input_pullup_mode(int port_num, int pin_num);
 
 static void enable_interrupt_pins(int port_num, int pin_num);
 static void disable_interrupt_pins(int port_num, int pin_num);
+bool gpioIRQ(pin_t pin, uint8_t irqMode, pinIrqFun_t irqFun);
 
 
-pinIrqFun_t interrupt_vector[5];
+pinIrqFun_t interrupt_matrix[5][32];
 int interrupt_pins[5][32];
 
 void interrupts_init(){
@@ -28,6 +29,7 @@ void interrupts_init(){
 		for(j = 0; j< 32; j++)
 			interrupt_pins[i][j] = -1;
 }
+
 //queda todo como en reset
 void gpioMode (pin_t pin, uint8_t mode){
 	int port_num = PIN2PORT(pin);
@@ -250,10 +252,10 @@ bool gpioRead (pin_t pin){
 	return gpio->PDIR & (1 << pin_num);
 }
 
-bool gpioIRQ(pin_t pin, uint_t irqMode, pinIrqFun_t irqFun){
+bool gpioIRQ(pin_t pin, uint8_t irqMode, pinIrqFun_t irqFun){
 	int port_num = PIN2PORT(pin);
 	int pin_num = PIN2NUM(pin);
-	interrupt_vector[port_num] = irqFun;
+	interrupt_matrix[port_num][pin_num] = irqFun;
 
 	if(irqMode == GPIO_IRQ_MODE_DISABLE)
 		disable_interrupt_pins(port_num, pin_num);
@@ -268,15 +270,15 @@ bool gpioIRQ(pin_t pin, uint_t irqMode, pinIrqFun_t irqFun){
 			port->PCR[pin_num] &= ~(0b1111 << PORT_PCR_IRQC_SHIFT);
 		case GPIO_IRQ_MODE_RISING_EDGE:
 			port->PCR[pin_num] &= ~(0b1111 << PORT_PCR_IRQC_SHIFT);
-			port->PCR[pin_num] |= 0b1001 << PORT_PCR_ICRQ_SHIFR;
+			port->PCR[pin_num] |= 0b1001 << PORT_PCR_IRQC_SHIFT;
 			break;
 		case GPIO_IRQ_MODE_FALLING_EDGE:
 			port->PCR[pin_num] &= ~(0b1111 << PORT_PCR_IRQC_SHIFT);
-			port->PCR[pin_num] |= 0b1010 << PORT_PCR_ICRQ_SHIFR;
+			port->PCR[pin_num] |= 0b1010 << PORT_PCR_IRQC_SHIFT;
 			break;
 		case GPIO_IRQ_MODE_BOTH_EDGES:
 			port->PCR[pin_num] &= ~(0b1111 << PORT_PCR_IRQC_SHIFT);
-			port->PCR[pin_num] |= 0b1011 << PORT_PCR_ICRQ_SHIFR;
+			port->PCR[pin_num] |= 0b1011 << PORT_PCR_IRQC_SHIFT;
 			break;
 		case GPIO_IRQ_CANT_MODES:
 			break;
@@ -285,13 +287,81 @@ bool gpioIRQ(pin_t pin, uint_t irqMode, pinIrqFun_t irqFun){
 	}
 }
 
-void PORTA_IRQHandler(void){
-	PORT_ClearInterrupt(PA, )
+
+/***********************************
+*********get_interrupt_pin**********
+************************************
+* get_interrupt_pin returns the first pin in interrupt_pins which has
+* isf pin asserted in the specified port
+*		- port_num : port number that genereted the interrupt
+*	OUTPUT:
+*		- pin_num : pin number with isf = 1
+*/
+int get_interrupt_pin(int port_num){
+
+	PORT_Type * addr_array[] = PORT_BASE_PTRS;
+	PORT_Type * port = addr_array[port_num];
+	uint32_t isf;
+	int pin_num = -1;
+	int i = 0;
+	while(interrupt_pins[i] != -1){
+		pin_num = interrupt_pins[i];
+		isf = port->PCR[pin_num] & PORT_PCR_ISF_MASK;
+		isf >>= PORT_PCR_ISF_SHIFT;
+		if(isf == 1)
+			return pin_num;
+		i++;
+	}
+	return -1;
 }
 
-void PORT_ClearInterruptFlag (PORT_Type port, int pin_num){
+void PORTA_IRQHandler(void){
+	int pin_num = get_interrupt_pin(PA);
+	if (pin_num != -1){
+		PORT_ClearInterruptFlag(PA, pin_num);
+	}
+	interrupt_matrix[PA][pin_num]();
+}
+
+void PORTB_IRQHandler(void){
+	int pin_num = get_interrupt_pin(PB);
+	if (pin_num != -1){
+		PORT_ClearInterruptFlag(PB, pin_num);
+	}
+	interrupt_matrix[PB][pin_num]();
+}
+
+void PORTC_IRQHandler(void){
+	int pin_num = get_interrupt_pin(PC);
+	if (pin_num != -1){
+		PORT_ClearInterruptFlag(PC, pin_num);
+	}
+	interrupt_matrix[PC][pin_num]();
+}
+
+void PORTD_IRQHandler(void){
+	int pin_num = get_interrupt_pin(PD);
+	if (pin_num != -1){
+		PORT_ClearInterruptFlag(PD, pin_num);
+	}
+	interrupt_matrix[PD][pin_num]();
+}
+
+void PORTE_IRQHandler(void){
+	int pin_num = get_interrupt_pin(PE);
+	if (pin_num != -1){
+		PORT_ClearInterruptFlag(PE, pin_num);
+	}
+	interrupt_matrix[PE][pin_num]();
+}
+
+void PORT_ClearInterruptFlag (int port_num, int pin_num){
+
+	PORT_Type * addr_arrays[] = PORT_BASE_PTRS;
+	PORT_Type * port = addr_arrays[port_num];
 	port->PCR[pin_num] |= PORT_PCR_ISF_MASK;
 }
+
 static void enable_interrupt_pins(int port_num, int pin_num){
 	for (int i = 0; i < 32; i++)
 		if(interrupt_pins[port_num][i] == pin_num)
@@ -301,6 +371,7 @@ static void enable_interrupt_pins(int port_num, int pin_num){
 			break;
 		}
 }
+
 static void disable_interrupt_pins(int port_num, int pin_num){
 	for (int i = 0; i < 32; i++)
 		if(interrupt_pins[port_num][i] == pin_num){

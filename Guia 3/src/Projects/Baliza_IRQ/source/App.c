@@ -22,6 +22,7 @@
  ******************************************************************************/
 
 static void delayLoop(uint32_t veces);
+void button_handler(void);
 
 
 /*******************************************************************************
@@ -34,15 +35,14 @@ static void delayLoop(uint32_t veces);
 void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
+    gpioWrite(PIN_LED_BLUE, LOW);
     interrupts_init();
-    gpioIRQ(PIN_SW3, GPIO_IRQ_MODE_RISING_EDGE, button_handler);
+    gpioMode(PIN_SW3, INPUT);
+    gpioIRQ(PIN_SW3, GPIO_IRQ_MODE_FALLING_EDGE, &button_handler);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
-void App_Run (void)
-{
-    delayLoop(4000000UL);
-    gpioToggle(PIN_LED_BLUE);
+void App_Run (void){
 
 }
 
@@ -62,6 +62,6 @@ static void delayLoop(uint32_t veces)
 /*******************************************************************************
  ******************************************************************************/
 
-void buton_handler(){
-
+void button_handler(void){
+	gpioToggle(PIN_LED_BLUE);
 }
