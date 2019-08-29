@@ -20,7 +20,6 @@
 #endif /* FCLK % SYSTICK_ISR_FREQUENCY_HZ != 0 */
 
 
-
 typedef void (*systick_callback_t)(void);
 systick_callback_t callback;
 
@@ -30,9 +29,12 @@ void SysTick_Handler(void);
 
 bool SysTick_Init (void (*funcallback)(void))
 {
-	if (callback != NULL) {
+	NVIC_EnableIRQ(SysTick_IRQn);
+	if (callback == NULL) {
 		SysTick->CTRL = 0x00; 								// enable systick interrupts
 		SysTick->LOAD = FCLK/SYSTICK_ISR_FREQUENCY_HZ - 1; 	// load value = pulses per period - 1
+		SysTick->VAL=0x00;
+		SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk| SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk;
 		callback = funcallback;								// set ISR
 
 		return true;

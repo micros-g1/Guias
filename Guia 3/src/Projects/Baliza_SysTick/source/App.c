@@ -41,7 +41,10 @@ void systick_callback(void);
 void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
-    SysTick_Init(systick_callback);
+
+
+    void (*asd)(void) = &systick_callback;
+    SysTick_Init(asd);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
@@ -70,6 +73,7 @@ void systick_callback(void)
 	else {
 		counter++;
 	}
+
 }
 
 

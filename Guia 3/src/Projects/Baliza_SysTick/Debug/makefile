@@ -43,7 +43,7 @@ clean:
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "Baliza_SysTick.axf"; # arm-none-eabi-objcopy -v -O binary "Baliza_SysTick.axf" "Baliza_SysTick.bin" ; # checksum -p  -d "Baliza_SysTick.bin";
+	-arm-none-eabi-size "Baliza_SysTick.axf"; # arm-none-eabi-objcopy -v -O binary "Baliza_SysTick.axf" "Baliza_SysTick.bin" ; # checksum -p MK64FN1M0xxx12 -d "Baliza_SysTick.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents post-build
