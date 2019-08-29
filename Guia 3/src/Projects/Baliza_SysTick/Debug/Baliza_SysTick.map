@@ -121,41 +121,41 @@ Discarded input sections
  .debug_macro   0x00000000       0x48 ./SDK/CMSIS/system_MK64F12.o
  .debug_macro   0x00000000     0xe07b ./SDK/CMSIS/system_MK64F12.o
  .debug_macro   0x00000000     0x122b ./SDK/CMSIS/system_MK64F12.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .group         0x00000000        0xc C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .text          0x00000000        0x0 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .data          0x00000000        0x0 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .bss           0x00000000        0x0 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .group         0x00000000        0xc C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .text          0x00000000        0x0 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .data          0x00000000        0x0 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .bss           0x00000000        0x0 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
  .text.gpioWrite
-                0x00000000       0x5c C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000000       0x5c C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
  .text.gpioRead
-                0x00000000       0x68 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000      0xa5a C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000      0x34e C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0x22 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0x3a C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0x10 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0x5c C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0x1c C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0x22 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0xdf C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000      0xecf C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0x48 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000     0xe07b C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000     0x122b C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
- .debug_macro   0x00000000       0x16 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000000       0x68 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000      0xa5a C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000      0x34e C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0x22 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0x3a C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0x10 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0x5c C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0x1c C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0x22 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0xdf C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000      0xecf C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0x48 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000     0xe07b C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000     0x122b C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x00000000       0x16 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
 Memory Configuration
 
@@ -175,7 +175,7 @@ LOAD ./SDK/startup/main.o
 LOAD ./SDK/startup/semihost_hardfault.o
 LOAD ./SDK/startup/startup_mk64f12.o
 LOAD ./SDK/CMSIS/system_MK64F12.o
-LOAD C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+LOAD C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 START GROUP
 LOAD c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a
 LOAD c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a
@@ -362,10 +362,10 @@ END GROUP
                 0x00000654       0x3c ./SDK/CMSIS/system_MK64F12.o
                 0x00000654                SystemInit
  .text.gpioMode
-                0x00000690       0x98 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000690       0x98 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
                 0x00000690                gpioMode
  .text.gpioToggle
-                0x00000728       0x48 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000728       0x48 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
                 0x00000728                gpioToggle
  .text.App_Run  0x00000770        0x6 ./source/App.o
                 0x00000770                App_Run
@@ -636,14 +636,14 @@ END GROUP
                 0x00000a6c        0xe ./SDK/CMSIS/system_MK64F12.o
                 0x00000a6c                SystemInitHook
  .text.parsePin
-                0x00000a7a       0x42 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000a7a       0x42 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
  *(SORT_BY_ALIGNMENT(.rodata) SORT_BY_ALIGNMENT(.rodata.*) SORT_BY_ALIGNMENT(.constdata) SORT_BY_ALIGNMENT(.constdata.*))
  .rodata.portPtrList
-                0x00000abc       0x14 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000abc       0x14 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
  .rodata.gpioPtrList
-                0x00000ad0       0x14 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000ad0       0x14 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
  .rodata.mode2pcr
-                0x00000ae4       0x10 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000ae4       0x10 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
                 0x00000af8                . = ALIGN (0x8)
  *fill*         0x00000af4        0x4 ff
 
@@ -791,7 +791,7 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .debug_info    0x00000d2b       0x3b ./SDK/startup/semihost_hardfault.o
  .debug_info    0x00000d66      0x8b0 ./SDK/startup/startup_mk64f12.o
  .debug_info    0x00001616      0x5fc ./SDK/CMSIS/system_MK64F12.o
- .debug_info    0x00001c12      0x48c C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_info    0x00001c12      0x48c C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
 .debug_abbrev   0x00000000      0x824
  .debug_abbrev  0x00000000       0xad ./source/App.o
@@ -801,7 +801,7 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .debug_abbrev  0x000003f8       0x2f ./SDK/startup/semihost_hardfault.o
  .debug_abbrev  0x00000427      0x15c ./SDK/startup/startup_mk64f12.o
  .debug_abbrev  0x00000583      0x13f ./SDK/CMSIS/system_MK64F12.o
- .debug_abbrev  0x000006c2      0x162 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_abbrev  0x000006c2      0x162 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
 .debug_aranges  0x00000000      0x470
  .debug_aranges
@@ -819,7 +819,7 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .debug_aranges
                 0x00000400       0x30 ./SDK/CMSIS/system_MK64F12.o
  .debug_aranges
-                0x00000430       0x40 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x00000430       0x40 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
 .debug_ranges   0x00000000      0x420
  .debug_ranges  0x00000000       0x20 ./source/App.o
@@ -829,7 +829,7 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .debug_ranges  0x00000070       0x10 ./SDK/startup/semihost_hardfault.o
  .debug_ranges  0x00000080      0x320 ./SDK/startup/startup_mk64f12.o
  .debug_ranges  0x000003a0       0x20 ./SDK/CMSIS/system_MK64F12.o
- .debug_ranges  0x000003c0       0x60 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_ranges  0x000003c0       0x60 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
 .debug_macro    0x00000000    0x116d3
  .debug_macro   0x00000000       0x5a ./source/App.o
@@ -856,7 +856,7 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .debug_macro   0x00011544       0x11 ./SDK/startup/semihost_hardfault.o
  .debug_macro   0x00011555       0x29 ./SDK/startup/startup_mk64f12.o
  .debug_macro   0x0001157e       0x80 ./SDK/CMSIS/system_MK64F12.o
- .debug_macro   0x000115fe       0xd5 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_macro   0x000115fe       0xd5 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
 .debug_line     0x00000000     0x10a8
  .debug_line    0x00000000      0x104 ./source/App.o
@@ -866,24 +866,24 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .debug_line    0x000005c4       0x59 ./SDK/startup/semihost_hardfault.o
  .debug_line    0x0000061d      0x6d8 ./SDK/startup/startup_mk64f12.o
  .debug_line    0x00000cf5      0x1c7 ./SDK/CMSIS/system_MK64F12.o
- .debug_line    0x00000ebc      0x1ec C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_line    0x00000ebc      0x1ec C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
-.debug_str      0x00000000    0x785f3
- .debug_str     0x00000000     0x3857 ./source/App.o
-                               0x39ba (size before relaxing)
- .debug_str     0x00003857    0x6d4a8 ./source/SysTick.o
-                              0x70dcb (size before relaxing)
- .debug_str     0x00070cff     0x6d6e ./SDK/startup/hardware.o
-                              0x77217 (size before relaxing)
- .debug_str     0x00077a6d       0x1b ./SDK/startup/main.o
-                              0x76feb (size before relaxing)
- .debug_str     0x00077a88       0x36 ./SDK/startup/semihost_hardfault.o
-                               0x2d51 (size before relaxing)
- .debug_str     0x00077abe      0x82a ./SDK/startup/startup_mk64f12.o
-                               0x35bf (size before relaxing)
- .debug_str     0x000782e8       0x62 ./SDK/CMSIS/system_MK64F12.o
-                              0x77126 (size before relaxing)
- .debug_str     0x0007834a      0x2a9 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+.debug_str      0x00000000    0x785e8
+ .debug_str     0x00000000     0x384c ./source/App.o
+                               0x39af (size before relaxing)
+ .debug_str     0x0000384c    0x6d4a8 ./source/SysTick.o
+                              0x70dc0 (size before relaxing)
+ .debug_str     0x00070cf4     0x6d6e ./SDK/startup/hardware.o
+                              0x7720c (size before relaxing)
+ .debug_str     0x00077a62       0x1b ./SDK/startup/main.o
+                              0x76fe0 (size before relaxing)
+ .debug_str     0x00077a7d       0x36 ./SDK/startup/semihost_hardfault.o
+                               0x2d46 (size before relaxing)
+ .debug_str     0x00077ab3      0x82a ./SDK/startup/startup_mk64f12.o
+                               0x35b4 (size before relaxing)
+ .debug_str     0x000782dd       0x62 ./SDK/CMSIS/system_MK64F12.o
+                              0x7711b (size before relaxing)
+ .debug_str     0x0007833f      0x2a9 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
                               0x772d6 (size before relaxing)
 
 .comment        0x00000000       0x7e
@@ -895,7 +895,7 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .comment       0x0000007e       0x7f ./SDK/startup/semihost_hardfault.o
  .comment       0x0000007e       0x7f ./SDK/startup/startup_mk64f12.o
  .comment       0x0000007e       0x7f ./SDK/CMSIS/system_MK64F12.o
- .comment       0x0000007e       0x7f C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .comment       0x0000007e       0x7f C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
 .ARM.attributes
                 0x00000000       0x39
@@ -914,7 +914,7 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .ARM.attributes
                 0x00000156       0x39 ./SDK/CMSIS/system_MK64F12.o
  .ARM.attributes
-                0x0000018f       0x39 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+                0x0000018f       0x39 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
 
 .debug_frame    0x00000000      0xbd4
  .debug_frame   0x00000000       0x60 ./source/App.o
@@ -924,4 +924,4 @@ OUTPUT(Baliza_SysTick.axf elf32-littlearm)
  .debug_frame   0x00000174       0x20 ./SDK/startup/semihost_hardfault.o
  .debug_frame   0x00000194      0x904 ./SDK/startup/startup_mk64f12.o
  .debug_frame   0x00000a98       0x74 ./SDK/CMSIS/system_MK64F12.o
- .debug_frame   0x00000b0c       0xc8 C:/ITBA/9 Cuatrimestre/Laboratorio de Microprocesadores/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o
+ .debug_frame   0x00000b0c       0xc8 C:/Users/lisan/Documents/Repositorios/Micros/Guias/Guia 3/src/Projects/Baliza_SysTick/source/gpio.o

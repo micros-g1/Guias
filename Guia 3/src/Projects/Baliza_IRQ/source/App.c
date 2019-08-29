@@ -11,7 +11,7 @@
 #include "board.h"
 #include "gpio.h"
 
-#include "MK64F12.h"
+
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -21,6 +21,7 @@
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
+static void delayLoop(uint32_t veces);
 void button_handler(void);
 
 
@@ -35,7 +36,6 @@ void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
     gpioWrite(PIN_LED_BLUE, LOW);
-    NVIC_EnableIRQ(PORTA_IRQn);
     interrupts_init();
     gpioMode(PIN_SW3, INPUT);
     gpioIRQ(PIN_SW3, GPIO_IRQ_MODE_FALLING_EDGE, &button_handler);
@@ -43,7 +43,7 @@ void App_Init (void)
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void){
-
+	while(1){;}
 }
 
 
@@ -52,6 +52,11 @@ void App_Run (void){
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
+
+static void delayLoop(uint32_t veces)
+{
+    while (veces--);
+}
 
 
 /*******************************************************************************

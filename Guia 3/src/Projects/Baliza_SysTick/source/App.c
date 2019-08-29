@@ -71,7 +71,6 @@ void systick_callback(void)
 	else {
 		counter++;
 	}
-
 }
 
 
