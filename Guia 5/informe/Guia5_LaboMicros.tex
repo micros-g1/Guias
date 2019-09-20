@@ -1,0 +1,38 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Lisandro Alvarez}
+\title{Guia 5}
+\begin{document}
+\section{UART}
+Tenemos la versión del micro de 100 pines, entonces tenemos 5 UART's disponibles.
+\subsection{Pines UART}
+Sacado de la sección 5.1 Signal Multiplexing and PIN assignment del datasheet del micro.
+Tenemos acceso a todas las UART del micro en los pines de la tabla. 
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|}
+\hline 
+UART & RTS & CTS & TX & RX \\ 
+\hline 
+0 & A3(2)/A17(3)/B2(3)/D4(3) & A0(2)/A16(3)/B3(3)/D5(3) & A2(2)/A14(3)/B17(3)/D7(3) & A1(2)/A15(3)/B16(3)/D6(3) \\ 
+\hline 
+1 & E3(3)/C1(3) & E2(3)/C2(3) & E0(3)/C4(3) & E1(3)/C3(3) \\ 
+\hline 
+2 & D0(3) & D1(3) & D3(3) & D2(3) \\ 
+\hline 
+3 & B12(2)/E7(3)/B8(3)/C18(3) & B13(2)/E6(3)/B9(3)/C19(3) & E4(3)/B11(3)/C17(3) & E5(3)/B10(3)/C16(3) \\ 
+\hline 
+4 & E27(3)/C12(3) & E26(3)/C13(3) & E24(3)/C15(3) & E25(3)/C14(3) \\ 
+\hline 
+\end{tabular}}
+\end{table}
+
+El terminal TX de la UART0 sale por los pines PTA2, PTA14, PTB17, PTD7.
+\end{document}
