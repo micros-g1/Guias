@@ -5,3 +5,9 @@
 *.synctex.gz
 *.gz
 *.out
+Guia 5/SDK.zip
+Guia 5/SDK/
+Guia 5/src/Projects/UART/.settings/
+Guia 5/src/Projects/UART/Debug/
+Guia 5/src/Projects/UART/Release/
+*.launch

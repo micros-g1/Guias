@@ -12,13 +12,16 @@
  ******************************************************************************/
 
 #include <stdint.h>
-
+#include <stdbool.h>
+#include "MK64F12.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-#define UART_CANT_IDS   ????
+#define UART_N_IDS   5
+
+//#define UART_HAL_DEFAULT_BAUDRATE 4800
 
 
 /*******************************************************************************
@@ -26,9 +29,11 @@
  ******************************************************************************/
 
 typedef struct {
-//    ???
-//    ???
-//    ???
+	uint8_t parity : 1; 		// true for using parity bit
+	uint8_t odd_parity : 1;		// true for odd parity (if parity is true)
+	uint8_t eight_bit_word : 1;	// true for eight bit words, false for nine
+	uint8_t interrupts : 1;		// true to enable non blocking functionality
+	uint32_t baudrate;
 } uart_cfg_t;
 
 
@@ -52,7 +57,7 @@ void uartInit (uint8_t id, uart_cfg_t config);
  * @param id UART's number
  * @return A new byte has being received
 */
-uint8_t uartIsRxMsg(uint8_t id);
+bool uartIsRxMsg(uint8_t id);
 
 /**
  * @brief Check how many bytes were received
@@ -84,7 +89,18 @@ uint8_t uartWriteMsg(uint8_t id, const char* msg, uint8_t cant);
  * @param id UART's number
  * @return All bytes were transfered
 */
-uint8_t uartIsTxMsgComplete(uint8_t id);
+bool uartIsTxMsgComplete(uint8_t id);
+
+
+
+////////////////////////
+// BLOCKING FUNCTIONS //
+////////////////////////
+void uart_putchar (UART_Type * channel, char ch);
+char uart_getchar (UART_Type * channel);
+int uart_getchar_present (UART_Type * channel);
+
+
 
 
 /*******************************************************************************
