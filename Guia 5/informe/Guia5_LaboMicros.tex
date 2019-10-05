@@ -35,4 +35,28 @@ UART & RTS & CTS & TX & RX \\
 \end{table}
 
 El terminal TX de la UART0 sale por los pines PTA2, PTA14, PTB17, PTD7.
+
+
+\section{SPI}
+
+El proceso de leer/escrbir (como master), es un proceso de escritura y lectura simultaneo. Para leer un dato (del periferco que sea) tengo que escribir algo a la salida (si fuera necesario, data, sino algo dummy) para hacer circular la data en el sistema. Analogia del engranaje de la bicicleta.
+
+\subsection{Pines SPI}
+\begin{itemize}
+\item \textbf{DSPI\_PCSn: }Señal que indica, desde el master, a que slave le mando data 
+\item \textbf{DSPI\_SCK: }Señal de clock. Comanda la comunicación del sistema
+\item \textbf{DSPI\_SIN: }Señal de entrada.
+\item \textbf{DSPI\_SOUT: }Señal de salida
+\end{itemize}
+
+\subsection{Driver SPI}
+El driver funciona con Systick? 
+\subsubsection{Que debe hacer mi driver?}
+\begin{itemize}
+\item Inicializar el periferico (Que SPI quiero inicializar)
+\item setear el clock (por cada SPI)
+\item leer: de cual slave leo?(por cada SPI)
+\item escribir: Tengo que decirle a que slave hablarle (por cada SPI)
+\end{itemize}
+
 \end{document}
