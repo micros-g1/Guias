@@ -10,6 +10,7 @@
 
 #include "board.h"
 #include "gpio.h"
+#include "FTM/ftm_driver.h"
 
 
 /*******************************************************************************
@@ -21,8 +22,7 @@
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-static void delayLoop(uint32_t veces);
-
+void callback(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -34,27 +34,26 @@ static void delayLoop(uint32_t veces);
 void App_Init (void)
 {
     gpioMode(PIN_LED_BLUE, OUTPUT);
+    gpioWrite(PIN_LED_BLUE, false);
+    ftm_init();
+    ftm_set_overflow_handler(callback);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-    delayLoop(4000000UL);
-    gpioToggle(PIN_LED_BLUE);
+	while(1);
 }
 
+void callback(void){
+	gpioToggle(PIN_LED_BLUE);
+}
 
 /*******************************************************************************
  *******************************************************************************
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-
-static void delayLoop(uint32_t veces)
-{
-    while (veces--);
-}
-
 
 /*******************************************************************************
  ******************************************************************************/
