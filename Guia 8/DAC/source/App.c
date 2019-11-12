@@ -11,6 +11,8 @@
 #include "board.h"
 #include "gpio.h"
 #include "DAC/dac_driver.h"
+#include "VREF/vref_driver.h"
+#include "math.h"
 
 
 /*******************************************************************************
@@ -22,29 +24,25 @@
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-static void delayLoop(uint32_t veces);
 
+static void delayLoop(uint32_t veces);
 
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-static uint16_t data = 0;
+static uint64_t data = 0;
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-	gpioMode(PIN_LED_BLUE, OUTPUT);
-	dac_init();
+
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run (void)
 {
-	gpioToggle(PIN_LED_BLUE);
-	dac_set_data(DAC_0, data);
-	data++;
-	delayLoop(1200000uL);
+
 }
 
 
