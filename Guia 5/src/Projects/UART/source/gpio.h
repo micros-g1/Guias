@@ -1,7 +1,7 @@
 /***************************************************************************//**
   @file     gpio.h
   @brief    Simple GPIO Pin services, similar to Arduino
-  @author   Nicolás Magliola
+  @author   Nicol�s Magliola
  ******************************************************************************/
 
 #ifndef _GPIO_H_
@@ -52,7 +52,6 @@ enum { PA, PB, PC, PD, PE };
 
 typedef uint8_t pin_t;
 
-
 /*******************************************************************************
  * VARIABLE PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
@@ -67,6 +66,7 @@ typedef uint8_t pin_t;
  * @param mode INPUT, OUTPUT, INPUT_PULLUP or INPUT_PULLDOWN.
  */
 void gpioMode (pin_t pin, uint8_t mode);
+
 
 /**
  * @brief Write a HIGH or a LOW value to a digital pin
@@ -87,7 +87,6 @@ void gpioToggle (pin_t pin);
  * @return HIGH or LOW
  */
 bool gpioRead (pin_t pin);
-
 
 /*******************************************************************************
  ******************************************************************************/

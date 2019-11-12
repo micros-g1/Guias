@@ -28,10 +28,16 @@
 #define __FOREVER__     for(;;)
 #define __ISR__         void __attribute__ ((interrupt))
 
+#define ROCHI_DEBUG	0 // if 1, all functions in this file do nothing
+
+
 void hw_Init (void);
 
 void hw_EnableInterrupts (void);
 void hw_DisableInterrupts (void);
+
+
+
 
 /* See IRQn_Type for IRQn definitions
  * Example: NVIC_EnableIRQ(SysTick_IRQn);

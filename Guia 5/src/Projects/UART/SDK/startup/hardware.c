@@ -9,6 +9,7 @@
 
 static uint32_t __LDM_interruptDisableCount = 0;
 
+#if ROCHI_DEBUG != 1
 void hw_Init (void)
 {
     SCB->CPACR |= ((3UL << 10*2) | (3UL << 11*2)); /* set CP10, CP11 for Full Access to the FPU*/
@@ -55,4 +56,9 @@ void hw_DisableInterrupts (void)
 
     __LDM_interruptDisableCount++;
 }
+#else
+void hw_Init() {;}
+void hw_EnableInterrupts (void) {;}
+void hw_DisableInterrupts (void) {;}
+#endif
 

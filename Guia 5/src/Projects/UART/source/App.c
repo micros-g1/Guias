@@ -8,9 +8,8 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 
-#include "board.h"
-#include "gpio.h"
-#include "uart.h"
+#include "pc_interface/pc_interface.h"
+#include "pc_interface/UART/uart.h"
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -25,21 +24,12 @@
  *******************************************************************************
  ******************************************************************************/
 
+#define MSG_LEN 8
+
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init (void)
 {
-    gpioMode(PIN_LED_BLUE, OUTPUT);
-
-    uart_cfg_t config;
-    config.baudrate = 9600;
-    config.parity = false;
-    config.eight_bit_word = true;
-
-    uartInit(0, config);
-    //uartInitAri();
-
-	//uart_putchar(UART0, '5');
-
+    pc_init();
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
@@ -63,19 +53,15 @@ void App_Run (void)
 //	}
 //	i ++;
 
-	unsigned char buffer[10];
+	unsigned char buffer[MSG_LEN+1];
 	uint8_t n;
 	if (uartIsRxMsg(0)) {
-		n = uartReadMsg(0, buffer, 10);
-		uartWriteMsg(0, buffer, n);
-
-		volatile uint32_t i = 0;
-		while (!uartIsTxMsgComplete(0)) {
-			i++;
-		}
-		i = 0;
+		n = uartReadMsg(0, buffer, MSG_LEN);
+		buffer[n] = 0;
+		pc_send(buffer);
 	}
 
+	pc_periodic();
 //	char c = uart_getchar(UART0);
 //	uart_putchar(UART0, c);
 //	uart_putchar(UART0, c);

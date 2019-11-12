@@ -5,11 +5,7 @@
 #include "queue.h"
 #include "hardware.h"
 
-// queue Variables
-static volatile uint8_t queue[Q_MAX_LENGTH];	//Circular queue
-static volatile unsigned int queue_length = 0;				//Keeps track of queue length
-static volatile unsigned int in_offset = 0;					//Offset for adding next data
-static volatile unsigned int out_offset = 0;				//Offset for reading next data
+
 
 void q_init(queue_t * q)
 {
@@ -25,7 +21,7 @@ uint8_t q_read_blocking(queue_t * q)
     while(q->len == 0) {;} // wait for data
 
     ans = q->buffer[q->out++];
-    if(q->out == Q_MAX_LENGTH) {
+    if(q->out >= Q_MAX_LENGTH) {
         q-> out = 0;
     }
     //Atomic operation (assembly)
@@ -47,15 +43,16 @@ void q_flush(queue_t * q)
 bool q_pushback(queue_t * q, uint8_t data)
 {
     bool ret_val = false;
+
     hw_DisableInterrupts();
 
-    if(q->len != Q_MAX_LENGTH)
-    {
-        q->buffer[q->in++] = data;
-        if(q->in == Q_MAX_LENGTH)
-            q->in = 0;
-        q->len++;
-        ret_val = true;
+    if (q->len < Q_MAX_LENGTH) {
+    	q->buffer[q->in++] = data;
+    	if(q->in >= Q_MAX_LENGTH) {
+        	q->in = 0;
+    	}
+    	q->len = q->len <= Q_MAX_LENGTH? q->len+1 : Q_MAX_LENGTH;
+    	ret_val = true;
     }
     hw_EnableInterrupts();
     return ret_val;
@@ -67,7 +64,6 @@ bool q_pushfront(queue_t * q, uint8_t data)
 {
     bool ret_val = false;
     hw_DisableInterrupts();
-
     if(q->len != Q_MAX_LENGTH) {
     	if(q->out == 0) {
     		q->out = Q_MAX_LENGTH;
@@ -100,6 +96,7 @@ uint8_t q_popfront(queue_t * q)
 {
 	uint8_t data = 0;
 
+    hw_DisableInterrupts();
     if (q->len) {
         q->len--;
 
@@ -111,6 +108,6 @@ uint8_t q_popfront(queue_t * q)
 //        if(q.len == Q_MAX_LENGTH)
 //        	q.len = Q_MAX_LENGTH+1;
     }
-
+    hw_EnableInterrupts();
     return data;
 }
