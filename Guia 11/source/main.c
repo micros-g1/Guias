@@ -1,5 +1,8 @@
 #include "hardware.h"
 #include  <os.h>
+#include <os_cfg_app.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 /* LEDs */
 #define LED_R_PORT            PORTB
@@ -34,17 +37,50 @@ static CPU_STK TaskStartStk[TASKSTART_STK_SIZE];
 static OS_TCB Task2TCB;
 static CPU_STK Task2Stk[TASK2_STK_SIZE];
 
+
+//static OS_TCB Task3TCB;
+//static CPU_STK Task3Stk[TASK2_STK_SIZE];
+
+
 /* Example semaphore */
-static OS_SEM semTest;
+//static OS_SEM semTest;
+static CPU_TS ts; // time stamp
+
+static OS_Q queue;
+
+//static void Task3(void * p_arg) {
+//	(void)p_arg;
+//	OS_ERR os_err;
+//
+//	while (1) {
+       // OSTimeDlyHMSM(0u, 0u, 0u, 100u, OS_OPT_TIME_HMSM_NON_STRICT, &os_err);
+        //OSTimeDly(100, OS_OPT_TIME_DLY, &os_err);
+//        OSSemPend(&semTest, 0, OS_OPT_PEND_BLOCKING, &ts, &os_err);
+//		OSTimeDly((uint32_t)OSCfg_TickRate_Hz/100000u, OS_OPT_TIME_DLY, &os_err);
+//		LED_B_TOGGLE();
+//	}
+//}
 
 static void Task2(void *p_arg) {
     (void)p_arg;
     OS_ERR os_err;
+    bool blue = false;
+    OS_MSG_SIZE size = sizeof(blue);
 
+    LED_R_OFF();
+    LED_B_OFF();
     while (1) {
-        OSSemPost(&semTest, OS_OPT_POST_1, &os_err);
-        OSTimeDlyHMSM(0u, 0u, 0u, 500u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-        LED_R_TOGGLE();
+//        OSSemPost(&semTest, OS_OPT_POST_1, &os_err);
+//        OSTimeDlyHMSM(0u, 0u, 0u, 1000u, OS_OPT_TIME_HMSM_NON_STRICT, &os_err);
+    	blue = OSQPend(&queue, (OS_TICK)0, OS_OPT_PEND_BLOCKING, &size, &ts, &os_err);
+    	if (blue) {
+    		LED_R_OFF();
+    		LED_B_ON();
+    	}
+    	else {
+    		LED_B_OFF();
+    		LED_R_ON();
+    	}
     }
 }
 
@@ -66,7 +102,7 @@ static void TaskStart(void *p_arg) {
 #endif
 
     /* Create semaphore */
-    OSSemCreate(&semTest, "Sem Test", 0u, &os_err);
+//    OSSemCreate(&semTest, "Sem Test", 0u, &os_err);
 
     /* Create Task2 */
     OSTaskCreate(&Task2TCB, 			//tcb
@@ -82,10 +118,36 @@ static void TaskStart(void *p_arg) {
                   0u,
                  (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
                  &os_err);
+//
+//    OSTaskCreate(&Task3TCB, 			//tcb
+//                 "Task 3",				//name
+//                  Task3,				//func
+//                  NULL,					//arg
+//                  TASK2_PRIO,			//prio
+//                 &Task3Stk[0u],			//stack
+//                  TASK2_STK_SIZE_LIMIT,	//stack limit
+//                  TASK2_STK_SIZE,		//stack size
+//                  0u,
+//                  0u,
+//                  0u,
+//                 (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
+//                 &os_err);
+    OS_ERR q_err;
+    OSQCreate(&queue,
+    		"the queue",
+			(OS_MSG_QTY)5,
+			&q_err);
 
+    bool blue = false;
     while (1) {
-        OSTimeDlyHMSM(0u, 0u, 0u, 1000u, OS_OPT_TIME_HMSM_STRICT, &os_err);
-        LED_G_TOGGLE();
+        OSTimeDlyHMSM(0u, 0u, 1u, 000u, OS_OPT_TIME_HMSM_STRICT, &os_err);
+       // LED_G_TOGGLE();
+        OSQPost(&queue,
+        		(void*)blue,
+				(OS_MSG_SIZE)sizeof(blue),
+				OS_OPT_POST_FIFO,
+				&q_err);
+        blue ^= true;
     }
 }
 
@@ -96,7 +158,7 @@ int main(void) {
     CPU_ERR  cpu_err;
 #endif
 
-    hw_Init();
+     hw_Init();
 
     /* RGB LED */
     SIM->SCGC5 |= (SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTE_MASK);
@@ -130,6 +192,7 @@ int main(void) {
                   0u,
                  (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR | OS_OPT_TASK_SAVE_FP),
                  &err);
+
 
     OSStart(&err);
 
